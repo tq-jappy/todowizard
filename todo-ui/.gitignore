@@ -1,4 +1,10 @@
 /build
+logs/*
+!.gitkeep
+node_modules/
+bower_components/
+tmp
+.idea
 /.gradle
 /.settings
 /bin

@@ -34,10 +34,10 @@ public class Main extends Application<TodoConfiguration> {
      */
     public static void main(String... args) throws Exception {
         Main app = new Main();
-        // app.run(args);
-        // メモリDBを使っているので、DB作成からサーバの起動まで一気通貫で行う
-        app.run(new String[] { "db", "migrate", "config/config.yml" });
-        app.run(new String[] { "server", "config/config.yml" });
+        app.run(args);
+        // String configPath = "config/config-postgresql.yml";
+        // app.run(new String[] { "db", "migrate", configPath });
+        // app.run(new String[] { "server", configPath });
     }
 
     /**
@@ -55,8 +55,11 @@ public class Main extends Application<TodoConfiguration> {
         };
         bootstrap.addBundle(domaBundle);
 
-        bootstrap.addBundle(new AssetsBundle("/assets", "/app", "index.html",
+        // Assets
+        bootstrap.addBundle(new AssetsBundle("/assets", "/todo", "index.html",
                 "assets"));
+        bootstrap.addBundle(new AssetsBundle("/bower_components",
+                "/todo/bower_components", null, "bower_components"));
 
         // Migrations
         bootstrap.addBundle(new MigrationsBundle<TodoConfiguration>() {

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="todoApp">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="">
+<link href="bower_components/html5-boilerplate/css/normalize.css">
+<link href="bower_components/html5-boilerplate/css/main.css">
+<link href="./css/todo.css" />
+<title>ToDo-Wizard</title>
+</head>
+<body ng-controller="mainController">
+
+	<div class="text center">
+		<h1>{{ todos.length }}</h1>
+	</div>
+
+	<div id="todo-list" class="row">
+		<div>
+			<div class="checkbox" ng-repeat="todo in todos">
+				<label> <input type="checkbox"
+					ng-click="deleteTodo(todo.id)"> {{ todo.title }}
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<div id="todo-form">
+		<div>
+			<form>
+				<div class="form-group">
+					<input type="text" ng-model="formData.title" />
+				</div>
+				<button type="submit" ng-click="createTodo()">Add</button>
+			</form>
+		</div>
+	</div>
+</body>
+
+<!-- AngularJS files -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+
+<!--  Project specific js files -->
+<script src="js/todo.js"></script>
+
+</html>

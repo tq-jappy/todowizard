@@ -1,4 +1,11 @@
-repositories { mavenCentral() //  maven { url "https://maven.java.net/content/repositories/snapshots" }
+repositories { mavenCentral() }
+
+sourceSets {
+  main { 
+    resources {
+      srcDir 'app'
+    }
+  }
 }
 
 dependencies {

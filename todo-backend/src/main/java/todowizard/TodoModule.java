@@ -6,6 +6,11 @@ import todowizard.resource.TodoResource;
 
 import com.google.inject.AbstractModule;
 
+/**
+ * アプリ固有の Dao, リソースを設定するモジュール
+ * 
+ * @author t_endo
+ */
 public class TodoModule extends AbstractModule {
 
     /**

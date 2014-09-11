@@ -6,3 +6,4 @@
 .DS_Store
 /bin/
 /.apt_generated/
+/todo.h2.db
