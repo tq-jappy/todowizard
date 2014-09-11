@@ -1,0 +1,23 @@
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'groovy'
+    apply plugin: 'war'
+    apply plugin: 'eclipse'
+
+    sourceCompatibility = 1.8
+    version = '0.0.1'
+
+    def defaultEncoding = 'UTF-8'
+    def jdkVersion = '1.8'
+
+    repositories { mavenCentral() }
+
+    dependencies {
+        testCompile 'org.codehaus.groovy:groovy-all:2.3.2'
+        testCompile 'junit:junit:4.11'
+        testCompile 'org.hamcrest:hamcrest-library:1.1'
+        providedCompile 'org.projectlombok:lombok:1.14.6'
+    }
+
+    [compileJava, compileTestJava]*.options*.encoding = defaultEncoding
+}

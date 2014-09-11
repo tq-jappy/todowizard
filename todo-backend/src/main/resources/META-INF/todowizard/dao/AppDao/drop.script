@@ -1,0 +1,2 @@
+drop sequence todo_seq;
+drop table todo;

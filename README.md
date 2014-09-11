@@ -1,4 +1,4 @@
-todowizard
-==========
+ToDo-Wizard
+========
 
-A full stack application using Dropwizard, AngularJS, Guice, and Doma.
+A full-stack ToDo application using Dropwizard, AngularJS, Guice and Doma.

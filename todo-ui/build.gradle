@@ -1,0 +1,5 @@
+repositories { mavenCentral() //  maven { url "https://maven.java.net/content/repositories/snapshots" }
+}
+
+dependencies {
+}

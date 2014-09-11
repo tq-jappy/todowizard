@@ -1,0 +1,28 @@
+processResources.destinationDir = compileJava.destinationDir
+println compileJava.destinationDir
+compileJava.dependsOn processResources
+
+apply plugin: 'gradle-one-jar'
+
+buildscript {
+    repositories { mavenCentral() }
+
+    dependencies { classpath 'com.github.rholder:gradle-one-jar:1.0.4' }
+}
+
+dependencies {
+    compile 'io.dropwizard:dropwizard-core:0.7.1'
+    compile 'io.dropwizard:dropwizard-assets:0.7.1'
+    compile 'io.dropwizard:dropwizard-migrations:0.7.1'
+    compile 'io.dropwizard:dropwizard-client:0.7.1'
+    compile 'com.google.inject:guice:3.0'
+    compile 'org.seasar.doma:doma:2.0.1'
+    compile 'com.h2database:h2:1.3.175'
+    providedCompile 'org.projectlombok:lombok:1.14.6'
+}
+
+apply from: 'eclipse.gradle'
+
+task oneJar(type: OneJar) { mainClass = 'todowizard.server.Main' }
+
+assemble.dependsOn oneJar

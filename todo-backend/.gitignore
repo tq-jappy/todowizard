@@ -1,0 +1,8 @@
+/build
+/.gradle
+/.settings
+/.factorypath
+/bin
+.DS_Store
+/bin/
+/.apt_generated/
