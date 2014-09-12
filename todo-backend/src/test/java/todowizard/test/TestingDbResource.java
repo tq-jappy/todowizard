@@ -13,9 +13,18 @@ import todowizard.dao.AppDaoImpl;
  */
 public class TestingDbResource extends ExternalResource {
 
-    private final TestConfig config = TestConfig.singleton();
+    private final Config config;
 
-    private AppDao dao = new AppDaoImpl(config);
+    private final AppDao dao;
+
+    public TestingDbResource(Config config) {
+        this.config = config;
+        this.dao = new AppDaoImpl(config);
+    }
+
+    public TestingDbResource() {
+        this(TestConfig.singleton());
+    }
 
     private TransactionManager tm = TestConfig.singleton()
             .getTransactionManager();

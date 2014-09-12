@@ -10,26 +10,26 @@ import org.junit.Test;
 import todowizard.Main;
 import todowizard.TodoConfiguration;
 
+import com.google.common.io.Resources;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
-import com.sun.xml.internal.bind.v2.TODO;
 
 /**
  * @author t_endo
  *
  */
-public class TodoResourceIntegrationTest {
+public class TodoHealthCheckIntegrationTest {
 
     @ClassRule
     public static final DropwizardAppRule<TodoConfiguration> rule = new DropwizardAppRule<>(
-            Main.class, "src/test/resources/config-test.yml");
+            Main.class, Resources.getResource("config-test.yml").getPath());
+
+    static Client client = new Client();
 
     @Test
-    public void test() throws Exception {
-        Client client = new Client();
-
-        String url = String.format("http://localhost:%d/api/todos",
-                rule.getLocalPort());
+    public void shouldBeSuccess() throws Exception {
+        String url = String.format("http://localhost:%d/healthcheck",
+                rule.getAdminPort());
 
         ClientResponse response = client.resource(url)
                 .get(ClientResponse.class);

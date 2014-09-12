@@ -9,6 +9,7 @@ import io.dropwizard.setup.Environment;
 import todowizard.core.doma.DomaBundle;
 import todowizard.core.doma.DomaConfig;
 import todowizard.core.guice.CommonModule;
+import todowizard.health.TodoHealthCheck;
 import todowizard.resource.TodoResource;
 
 import com.google.inject.Guice;
@@ -83,5 +84,8 @@ public class Main extends Application<TodoConfiguration> {
                 new TodoModule());
 
         environment.jersey().register(injector.getInstance(TodoResource.class));
+
+        environment.healthChecks().register("todo",
+                injector.getInstance(TodoHealthCheck.class));
     }
 }

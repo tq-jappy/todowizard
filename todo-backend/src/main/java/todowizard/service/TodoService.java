@@ -2,7 +2,6 @@ package todowizard.service;
 
 import java.util.List;
 
-import lombok.extern.slf4j.Slf4j;
 import todowizard.core.guice.Transactional;
 import todowizard.dao.TodoDao;
 import todowizard.entity.Todo;
@@ -16,7 +15,6 @@ import com.google.inject.Inject;
  * 
  * @author t_endo
  */
-@Slf4j
 @Transactional
 public class TodoService {
 
