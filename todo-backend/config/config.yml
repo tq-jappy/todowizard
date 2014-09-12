@@ -14,3 +14,9 @@ database:
   driverClass: org.h2.Driver
   user: sa
   url: jdbc:h2:todo;DB_CLOSE_DELAY=1
+
+# database:
+#   driverClass: org.postgresql.Driver
+#   user: postgres
+#   password: postgres
+#   url: jdbc:postgresql:todo
