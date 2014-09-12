@@ -26,8 +26,8 @@ public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequence = "todo_id_seq", initialValue = 1)
-    int id;
+    @SequenceGenerator(sequence = "TODO_ID_SEQ")
+    Integer id;
 
     boolean completed;
 

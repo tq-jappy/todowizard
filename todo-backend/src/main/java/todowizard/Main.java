@@ -35,7 +35,7 @@ public class Main extends Application<TodoConfiguration> {
     public static void main(String... args) throws Exception {
         Main app = new Main();
         app.run(args);
-        // String configPath = "config/config-postgresql.yml";
+        // String configPath = "config/config.yml";
         // app.run(new String[] { "db", "migrate", configPath });
         // app.run(new String[] { "server", configPath });
     }
