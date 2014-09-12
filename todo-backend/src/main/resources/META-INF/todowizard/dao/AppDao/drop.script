@@ -1,2 +1,2 @@
-drop sequence todo_seq;
+drop sequence todo_id_seq;
 drop table todo;

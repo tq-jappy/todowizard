@@ -9,19 +9,18 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import todowizard.entity.Todo;
-import todowizard.test.TestConfig;
 import todowizard.test.TestingDbResource;
 
 /**
+ * 
  * @author t_endo
- *
  */
 public class TodoDaoTest {
 
     @Rule
     public final TestingDbResource dbResource = new TestingDbResource();
 
-    private final TodoDao dao = new TodoDaoImpl(TestConfig.singleton());
+    private final TodoDao dao = new TodoDaoImpl(dbResource.getConfig());
 
     @Test
     public void selectById() {

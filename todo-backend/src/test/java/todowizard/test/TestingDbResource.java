@@ -1,6 +1,7 @@
 package todowizard.test;
 
 import org.junit.rules.ExternalResource;
+import org.seasar.doma.jdbc.Config;
 import org.seasar.doma.jdbc.tx.TransactionManager;
 
 import todowizard.dao.AppDao;
@@ -12,7 +13,9 @@ import todowizard.dao.AppDaoImpl;
  */
 public class TestingDbResource extends ExternalResource {
 
-    private AppDao dao = new AppDaoImpl(TestConfig.singleton());
+    private final TestConfig config = TestConfig.singleton();
+
+    private AppDao dao = new AppDaoImpl(config);
 
     private TransactionManager tm = TestConfig.singleton()
             .getTransactionManager();
@@ -29,6 +32,10 @@ public class TestingDbResource extends ExternalResource {
         tm.required(() -> {
             dao.drop();
         });
+    }
+
+    public Config getConfig() {
+        return config;
     }
 
     public void execute(Runnable runnable) {

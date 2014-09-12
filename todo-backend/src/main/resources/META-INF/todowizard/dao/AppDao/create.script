@@ -1,4 +1,4 @@
-create sequence todo_seq start with 100 increment by 1;
+create sequence todo_id_seq start with 100 increment by 1;
 
 create table todo (
     id integer not null primary key,
