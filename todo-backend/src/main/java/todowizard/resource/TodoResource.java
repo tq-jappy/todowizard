@@ -2,6 +2,7 @@ package todowizard.resource;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -33,7 +34,7 @@ public class TodoResource {
     }
 
     @POST
-    public Todo postTodo(Todo todo) {
+    public Todo postTodo(@Valid Todo todo) {
         todoService.create(todo);
         return todo;
     }

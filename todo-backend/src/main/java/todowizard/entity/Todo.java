@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Builder;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.seasar.doma.Entity;
 import org.seasar.doma.GeneratedValue;
 import org.seasar.doma.GenerationType;
@@ -31,5 +32,6 @@ public class Todo {
 
     boolean completed;
 
+    @NotEmpty
     String title;
 }
