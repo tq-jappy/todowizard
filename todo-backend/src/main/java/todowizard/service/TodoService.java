@@ -2,7 +2,7 @@ package todowizard.service;
 
 import java.util.List;
 
-import todowizard.core.guice.Transactional;
+import todowizard.core.guice.DomaTransactional;
 import todowizard.dao.TodoDao;
 import todowizard.entity.Todo;
 
@@ -10,12 +10,12 @@ import com.google.inject.Inject;
 
 /**
  * ToDo サービス。<br />
- * {@link Transactional} アノテーションをつけているため、メソッドの境界で自動的に REQUIRE
+ * {@link DomaTransactional} アノテーションをつけているため、メソッドの境界で自動的に REQUIRE
  * トランザクションがインターセプトされる。
  * 
  * @author t_endo
  */
-@Transactional
+@DomaTransactional
 public class TodoService {
 
     @Inject

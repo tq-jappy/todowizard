@@ -18,8 +18,8 @@ import com.google.inject.Inject;
  */
 public class DomaLocalTxInterceptor implements MethodInterceptor {
 
-    private static final Transactional DEFAULT_TRANSACTIONAL = Internal.class
-            .getAnnotation(Transactional.class);
+    private static final DomaTransactional DEFAULT_TRANSACTIONAL = Internal.class
+            .getAnnotation(DomaTransactional.class);
 
     @Inject
     private TransactionManager transactionManager;
@@ -29,7 +29,7 @@ public class DomaLocalTxInterceptor implements MethodInterceptor {
      */
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        Transactional transactional = readTransactionMetadata(invocation);
+        DomaTransactional transactional = readTransactionMetadata(invocation);
 
         Supplier<Object> supplier = () -> {
             // ラムダ式内で例外が起きた場合、ロールバックされる
@@ -58,21 +58,20 @@ public class DomaLocalTxInterceptor implements MethodInterceptor {
     }
 
     /**
-     * 対象に付いている {@link Transactional} アノテーションを取り出す。
+     * 対象に付いている {@link DomaTransactional} アノテーションを取り出す。
      * 
      * @param methodInvocation
      * @return
      */
-    private Transactional readTransactionMetadata(
+    private DomaTransactional readTransactionMetadata(
             MethodInvocation methodInvocation) {
         Method method = methodInvocation.getMethod();
         Class<?> targetClass = methodInvocation.getThis().getClass();
 
-        Transactional transactional = method
-                .getAnnotation(Transactional.class);
+        DomaTransactional transactional = method
+                .getAnnotation(DomaTransactional.class);
         if (transactional == null) {
-            transactional = targetClass
-                    .getAnnotation(Transactional.class);
+            transactional = targetClass.getAnnotation(DomaTransactional.class);
         }
 
         if (transactional == null) {
@@ -82,7 +81,7 @@ public class DomaLocalTxInterceptor implements MethodInterceptor {
         return transactional;
     }
 
-    @Transactional
+    @DomaTransactional
     private static class Internal {
     }
 }

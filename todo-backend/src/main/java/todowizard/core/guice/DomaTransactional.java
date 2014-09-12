@@ -16,7 +16,7 @@ import org.seasar.doma.jdbc.tx.TransactionAttribute;
 @Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-public @interface Transactional {
+public @interface DomaTransactional {
 
     TransactionAttribute attribute() default TransactionAttribute.REQURED;
 }

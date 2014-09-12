@@ -1,5 +1,7 @@
 package todowizard.core.guice;
 
+import static com.google.inject.matcher.Matchers.*;
+
 import java.util.Objects;
 
 import org.aopalliance.intercept.MethodInterceptor;
@@ -38,10 +40,9 @@ public class CommonModule extends AbstractModule {
         // トランザクション AOP
         MethodInterceptor interceptor = new DomaLocalTxInterceptor();
         requestInjection(interceptor);
-
-        bindInterceptor(Matchers.annotatedWith(Transactional.class),
-                Matchers.any(), interceptor);
-        bindInterceptor(Matchers.any(),
-                Matchers.annotatedWith(Transactional.class), interceptor);
+        bindInterceptor(annotatedWith(DomaTransactional.class), any(),
+                interceptor);
+        bindInterceptor(Matchers.any(), annotatedWith(DomaTransactional.class),
+                interceptor);
     }
 }
