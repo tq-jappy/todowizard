@@ -25,8 +25,18 @@ public class TodoService {
         return dao.selectAll();
     }
 
-    public int create(Todo todo) {
-        return dao.insert(todo);
+    public Todo findById(int id) {
+        return dao.selectById(id);
+    }
+
+    public Todo create(Todo todo) {
+        dao.insert(todo);
+        return todo;
+    }
+
+    public Todo update(Todo todo) {
+        dao.update(todo);
+        return todo;
     }
 
     public int delete(int id) {

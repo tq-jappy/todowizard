@@ -10,15 +10,16 @@
 </head>
 <body ng-controller="mainController">
 
-	<div class="text center">
-		<h1>{{ todos.length }}</h1>
+	<div>
+		<h1>ToDo Wizard</h1>
+		<p>{{ todoList.length }} / {{ todoList.length + doneList.length }}</p>
 	</div>
 
 	<div id="todo-list" class="row">
 		<div>
-			<div class="checkbox" ng-repeat="todo in todos">
-				<label> <input type="checkbox"
-					ng-click="deleteTodo(todo.id)"> {{ todo.title }}
+			<div class="checkbox" ng-repeat="todo in todoList">
+				<label> <input type="checkbox" ng-click="completeTodo(todo)">
+					{{ todo.title }}
 				</label>
 			</div>
 		</div>
@@ -33,6 +34,17 @@
 				<button type="submit" ng-click="createTodo()">Add</button>
 			</form>
 		</div>
+	</div>
+
+	<div id="done-list" class="row">
+		<h2>Done</h2>
+		<div>
+			<div class="checkbox" ng-repeat="todo in doneList">
+				<label style="text-decoration: line-through;"> {{ todo.title
+					}} </label>
+			</div>
+		</div>
+		<button ng-click="clearDoneList()">Clear</button>
 	</div>
 </body>
 
