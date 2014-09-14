@@ -5,49 +5,54 @@
 <meta name="description" content="">
 <link href="bower_components/html5-boilerplate/css/normalize.css">
 <link href="bower_components/html5-boilerplate/css/main.css">
-<link href="bower_components/bootstrap-css/css/bootstrap.min.css">
-<link href="bower_components/bootstrap-css/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css"
+	href="bower_components/bootstrap-css/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="bower_components/bootstrap-css/css/bootstrap-theme.min.css">
 <link href="./css/todo.css" />
+<script src="bower_components/jquery/jquery.min.js"></script>
+<script src="bower_components/bootstrap-css/js/bootstrap.min.js"></script>
 <title>ToDo-Wizard</title>
 </head>
 <body ng-controller="mainController">
-    <button type="button" class="btn btn-default">Default</button>
-
-	<div>
-		<h1>ToDo Wizard</h1>
-		<p>{{ todoList.length }} / {{ todoList.length + doneList.length }}</p>
-	</div>
-
-	<div id="todo-list" class="row">
-		<div>
-			<div class="checkbox" ng-repeat="todo in todoList">
-				<label> <input type="checkbox" ng-click="completeTodo(todo)">
-					{{ todo.title }}
-				</label>
-			</div>
+	<div class="container">
+		<div class="row">
+			<h1>ToDo Wizard</h1>
+			<p>{{ todoList.length }} / {{ todoList.length + doneList.length
+				}}</p>
 		</div>
-	</div>
 
-	<div id="todo-form">
-		<div>
-			<form>
-				<div class="form-group">
-					<input type="text" ng-model="formData.title" />
+		<div class="row">
+			<div class="col-md-8">
+				<div id="todo-list">
+					<div class="checkbox" ng-repeat="todo in todoList">
+						<label> <input type="checkbox"
+							ng-click="completeTodo(todo)"> {{ todo.title }}
+						</label>
+					</div>
 				</div>
-				<button type="submit" ng-click="createTodo()">Add</button>
-			</form>
-		</div>
-	</div>
 
-	<div id="done-list" class="row">
-		<h2>Done</h2>
-		<div>
-			<div class="checkbox" ng-repeat="todo in doneList">
-				<label style="text-decoration: line-through;"> {{ todo.title
-					}} </label>
+				<div id="todo-form">
+					<form>
+						<div class="form-group">
+							<input type="text" ng-model="formData.title" />
+						</div>
+						<button type="submit" class="btn btn-primary"
+							ng-click="createTodo()">Add</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="col-md-8">
+				<div id="done-list">
+					<h2>Done</h2>
+					<div class="checkbox" ng-repeat="todo in doneList">
+						<label> {{ todo.title }} </label>
+					</div>
+					<button class="btn btn-danger" ng-click="clearDoneList()">Clear</button>
+				</div>
 			</div>
 		</div>
-		<button ng-click="clearDoneList()">Clear</button>
 	</div>
 </body>
 
