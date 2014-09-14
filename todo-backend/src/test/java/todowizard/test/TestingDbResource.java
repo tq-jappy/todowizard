@@ -13,21 +13,17 @@ import todowizard.dao.AppDaoImpl;
  */
 public class TestingDbResource extends ExternalResource {
 
-    private final Config config;
+    private final TestConfig config;
 
     private final AppDao dao;
 
-    public TestingDbResource(Config config) {
+    private final TransactionManager tm;
+
+    public TestingDbResource(TestConfig config) {
         this.config = config;
         this.dao = new AppDaoImpl(config);
+        this.tm = config.getTransactionManager();
     }
-
-    public TestingDbResource() {
-        this(TestConfig.singleton());
-    }
-
-    private TransactionManager tm = TestConfig.singleton()
-            .getTransactionManager();
 
     @Override
     protected void before() throws Throwable {

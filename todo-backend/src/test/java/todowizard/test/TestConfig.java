@@ -2,23 +2,20 @@ package todowizard.test;
 
 import javax.sql.DataSource;
 
-import org.seasar.doma.SingletonConfig;
 import org.seasar.doma.jdbc.Config;
 import org.seasar.doma.jdbc.dialect.Dialect;
-import org.seasar.doma.jdbc.dialect.H2Dialect;
 import org.seasar.doma.jdbc.tx.LocalTransactionDataSource;
 import org.seasar.doma.jdbc.tx.LocalTransactionManager;
 import org.seasar.doma.jdbc.tx.TransactionManager;
+
+import todowizard.core.doma.DialectUtil;
 
 /**
  * インメモリ H2 データベース用の設定
  * 
  * @author t_endo
  */
-@SingletonConfig
 public class TestConfig implements Config {
-
-    private static final TestConfig CONFIG = new TestConfig();
 
     private final Dialect dialect;
 
@@ -26,12 +23,19 @@ public class TestConfig implements Config {
 
     private final TransactionManager transactionManager;
 
-    private TestConfig() {
-        dialect = new H2Dialect();
-        dataSource = new LocalTransactionDataSource(
-                "jdbc:h2:mem:todo-test;DB_CLOSE_DELAY=1", "sa", null);
+    public TestConfig(String driverClass, String user, String password,
+            String url) {
+        dialect = DialectUtil.inferDialect(driverClass);
+        dataSource = new LocalTransactionDataSource(url, user, password);
         transactionManager = new LocalTransactionManager(
                 dataSource.getLocalTransaction(getJdbcLogger()));
+
+        try {
+            Class.forName(driverClass);
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -47,9 +51,5 @@ public class TestConfig implements Config {
     @Override
     public TransactionManager getTransactionManager() {
         return transactionManager;
-    }
-
-    public static TestConfig singleton() {
-        return CONFIG;
     }
 }

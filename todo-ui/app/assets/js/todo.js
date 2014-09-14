@@ -1,10 +1,10 @@
-var todoWizard = angular.module('todoApp', []);
+var todoWizard = angular.module('todoApp', [ 'ui.bootstrap' ]);
 
 function mainController($scope, $http) {
 	$scope.formData = {};
 	$scope.todoList = [];
 	$scope.doneList = [];
-
+	
 	$http.get('/api/todos').success(function(data) {
 		angular.forEach(data, function(todo, key) {
 			if (todo.completed) {

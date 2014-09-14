@@ -9,7 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import todowizard.entity.Todo;
-import todowizard.test.TestingDbResource;
+import todowizard.test.Migration;
 
 /**
  * 
@@ -17,14 +17,19 @@ import todowizard.test.TestingDbResource;
  */
 public class TodoDaoTest {
 
-    @Rule
-    public final TestingDbResource dbResource = new TestingDbResource();
+    // @Rule
+    // public final TestingDbResource dbResource = new TestingDbResource();
 
-    private final TodoDao dao = new TodoDaoImpl(dbResource.getConfig());
+    // private final TodoDao dao = new TodoDaoImpl(dbResource.getConfig());
+
+    @Rule
+    public final Migration migration = new Migration("config-test.yml");
 
     @Test
     public void selectById() {
-        dbResource.execute(() -> {
+        TodoDao dao = new TodoDaoImpl(migration.getConfig());
+
+        migration.getTransactionManager().required(() -> {
             List<Todo> actual = dao.selectAll();
 
             assertThat(actual, is(notNullValue()));
