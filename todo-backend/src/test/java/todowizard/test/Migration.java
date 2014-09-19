@@ -19,7 +19,6 @@ import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import lombok.SneakyThrows;
 
-import org.h2.Driver;
 import org.junit.rules.ExternalResource;
 import org.seasar.doma.jdbc.Config;
 import org.seasar.doma.jdbc.tx.TransactionManager;
@@ -52,10 +51,7 @@ public class Migration extends ExternalResource {
     public void before() throws Exception {
         this.testConfig = createTestConfig();
 
-        Class.forName("org.h2.Driver");
-        Driver d;
-
-        testConfig.getTransactionManager().required(
+        testConfig.getTransactionManager().requiresNew(
                 () -> {
                     try {
                         DatabaseConnection dbconn = new JdbcConnection(
@@ -96,20 +92,21 @@ public class Migration extends ExternalResource {
                         .buildDefaultValidatorFactory().getValidator(), mapper,
                 "dw");
 
-        mapper.getSubtypeResolver().registerSubtypes(
-                ConsoleReporterFactory.class, CsvReporterFactory.class,
-                Slf4jReporterFactory.class);
+        // mapper.getSubtypeResolver().registerSubtypes(
+        // ConsoleReporterFactory.class, CsvReporterFactory.class,
+        // Slf4jReporterFactory.class);
 
         TodoConfiguration config = factory.build(new File(Resources
                 .getResource(configPath).toURI()));
 
         DataSourceFactory dataSourceFactory = config.getDataSourceFactory();
 
-        
-        dataSourceFactory.build(null, "doma");
-        
+        // dataSourceFactory.build(null, "doma");
+
         System.out.println("*******" + dataSourceFactory.getDriverClass());
-        Class.forName(dataSourceFactory.getDriverClass());        
+        System.out.println(dataSourceFactory.getUrl());
+
+        Class.forName(dataSourceFactory.getDriverClass());
 
         return new TestConfig(dataSourceFactory.getDriverClass(),
                 dataSourceFactory.getUser(), dataSourceFactory.getPassword(),
