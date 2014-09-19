@@ -57,7 +57,7 @@ public class Main extends Application<TodoConfiguration> {
         bootstrap.addBundle(domaBundle);
 
         // Assets
-        bootstrap.addBundle(new AssetsBundle("/assets", "/todo", "index.html",
+        bootstrap.addBundle(new AssetsBundle("/app", "/todo", "index.html",
                 "assets"));
         bootstrap.addBundle(new AssetsBundle("/bower_components",
                 "/todo/bower_components", null, "bower_components"));

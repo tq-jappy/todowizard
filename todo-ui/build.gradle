@@ -3,7 +3,7 @@ repositories { mavenCentral() }
 sourceSets {
   main { 
     resources {
-      srcDir 'app'
+      srcDir 'src'
     }
   }
 }
