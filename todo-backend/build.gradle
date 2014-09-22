@@ -1,14 +1,8 @@
+plugins { id "com.github.johnrengelman.shadow" version "1.1.2" }
+
 processResources.destinationDir = compileJava.destinationDir
 println compileJava.destinationDir
 compileJava.dependsOn processResources
-
-apply plugin: 'gradle-one-jar'
-
-buildscript {
-    repositories { mavenCentral() }
-
-    dependencies { classpath 'com.github.rholder:gradle-one-jar:1.0.4' }
-}
 
 dependencies {
     runtime project(':todo-ui')
@@ -26,9 +20,18 @@ dependencies {
 
 apply from: 'eclipse.gradle'
 
-task oneJar(type: OneJar) {
-    mainClass = 'todowizard.Main'
-    additionalDir = project(':todo-ui').sourceSets.main.output.resourcesDir
+import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
+shadowJar {
+    exclude 'META-INF/MANIFEST.MF'
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+
+    transform(ServiceFileTransformer )
 }
 
-assemble.dependsOn oneJar
+jar {
+    manifest { attributes('Main-Class': 'todowizard.Main') }
+}
+
+assemble.dependsOn shadowJar
