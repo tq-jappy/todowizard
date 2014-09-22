@@ -5,7 +5,7 @@ println compileJava.destinationDir
 compileJava.dependsOn processResources
 
 dependencies {
-    runtime project(':todo-ui')
+    compile project(':todo-ui')
     compile 'io.dropwizard:dropwizard-core:0.7.1'
     compile 'io.dropwizard:dropwizard-assets:0.7.1'
     compile 'io.dropwizard:dropwizard-migrations:0.7.1'

@@ -8,5 +8,9 @@ sourceSets {
   }
 }
 
-dependencies {
+task npmInstall(type: Exec) {
+  workingDir projectDir
+  commandLine 'bower', 'install'
 }
+
+processResources.dependsOn npmInstall

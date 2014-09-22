@@ -1,5 +1,8 @@
 subprojects {
     apply plugin: 'java'
+}
+
+configure(subprojects.findAll {it.name != 'todo-ui'}) {
     apply plugin: 'groovy'
     apply plugin: 'war'
     apply plugin: 'eclipse'
