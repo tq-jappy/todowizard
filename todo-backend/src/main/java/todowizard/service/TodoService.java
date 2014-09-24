@@ -18,8 +18,12 @@ import com.google.inject.Inject;
 @DomaTransactional
 public class TodoService {
 
-    @Inject
     private TodoDao dao;
+
+    @Inject
+    public TodoService(TodoDao todoDao) {
+        this.dao = todoDao;
+    }
 
     public List<Todo> findAll() {
         return dao.selectAll();
