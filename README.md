@@ -19,7 +19,7 @@ To running an application, only JRE(JDK)8 is required.
 
 ## Run application
 
-1. ``java -jar todo-backend/build/libs/todo-backend-0.0.1-all.jar db migrate todo-backend/config/config.yml``
-1. ``java -jar todo-backend/build/libs/todo-backend-0.0.1-all.jar server todo-backend/config/config.yml``
+1. ``java -jar todo-backend/build/libs/*-all.jar db migrate todo-backend/config/config.yml``
+1. ``java -jar todo-backend/build/libs/*-all.jar server todo-backend/config/config.yml``
 
 Try to access ``http://yourhost:18080/todo/``
