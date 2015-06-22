@@ -24,3 +24,8 @@ configure(subprojects.findAll {it.name != 'todo-ui'}) {
 
     [compileJava, compileTestJava]*.options*.encoding = defaultEncoding
 }
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}

@@ -1,7 +1,9 @@
 /build
 /.gradle
 /.settings
+/.idea
 /bin
 .DS_Store
 /bin/
 *.db
+*.iml
